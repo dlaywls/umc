@@ -16,7 +16,7 @@ public class ResponseDto<T> {
     private final Boolean isSuccess;
     private final String code;
     private final String message;
-    @JsonInclude(JsonInclude.Include.NON_NULL)  //이게 뭐지????
+    @JsonInclude(JsonInclude.Include.NON_NULL)  
     private T result;
 
     public static <T> ResponseDto<T> onSuccess(T data, Code ok){
