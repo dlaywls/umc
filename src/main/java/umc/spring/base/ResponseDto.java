@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import umc.spring.web.dto.MemberResponseDTO;
 
 @Getter
 @AllArgsConstructor
@@ -25,4 +26,6 @@ public class ResponseDto<T> {
     public static <T> ResponseDto<T> onFailure(Code code, T data){
         return new ResponseDto<>(false, code.getCode(),code.getMessage(),data);
     }
+
+
 }
