@@ -11,7 +11,6 @@ public class MissionRequestDTO {
         LocalDate deadline;
         String missionSpec;
 
-        Long storeId;
 
     }
 }
