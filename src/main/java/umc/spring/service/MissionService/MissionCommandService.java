@@ -8,4 +8,6 @@ public interface MissionCommandService {
 
     @Transactional
     Mission MissionRegist(MissionRequestDTO.MissionRegistDto request, Long storeId);
+
+    Mission joinMission(Long memberId, Long missionId);
 }
