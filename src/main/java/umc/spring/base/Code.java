@@ -33,7 +33,8 @@ public enum Code {
 
     FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOODCATEGORY4001", "음식 종류를 찾을 수 없습니다."),
 
-    STORE_NOt_FOUND(HttpStatus.NOT_FOUND, "STORE4001", "상점을 찾을 수 없습니다.");
+    STORE_NOt_FOUND(HttpStatus.NOT_FOUND, "STORE4001", "상점을 찾을 수 없습니다."),
+    MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION4001", "미션을 찾을 수 없습니다.");
 
 
 
