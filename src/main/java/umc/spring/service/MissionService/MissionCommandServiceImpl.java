@@ -21,7 +21,7 @@ import umc.spring.web.dto.MissionRequestDTO;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public  class MissionCommandServiceImpl implements MissionCommandService{
 
 
