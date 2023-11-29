@@ -19,6 +19,7 @@ import umc.spring.web.dto.StoreResponseDTO;
 
 import static umc.spring.converter.StoreConverter.reviewPreViewListDTO;
 
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/Store")

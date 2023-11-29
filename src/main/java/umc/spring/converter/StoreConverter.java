@@ -32,7 +32,5 @@ public class StoreConverter {
                 .reviewList(reviewPreViewDTOList)
                 .build();
     }
-    public static StoreResponseDTO.ReviewPreViewListDTO reviewPreViewListDTO(List<Review> reviewList){
-        return null;
-    }
+
 }
