@@ -1,12 +1,12 @@
 package umc.spring.web.controller;
 
-import umc.spring.base.ResponseDto;
+import umc.spring.base.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import umc.spring.base.Code;
 import umc.spring.converter.MissionConverter;
 import umc.spring.domain.Mission;
 import umc.spring.service.MissionService.MissionCommandService;
+import umc.spring.validation.annotation.ExistStore;
 import umc.spring.web.dto.MissionRequestDTO;
 import umc.spring.web.dto.MissionResponseDTO;
 
@@ -19,10 +19,10 @@ public class MissionRestController {
     private final MissionCommandService missionCommandService;
 
     @PostMapping("/")
-    public ResponseDto<MissionResponseDTO.MissionResultDto> regist(@RequestBody @Valid MissionRequestDTO.MissionRegistDto request,
-                                                                   @RequestParam Long storeId) {
+    public ApiResponse<MissionResponseDTO.MissionResultDto> regist(@RequestBody @Valid MissionRequestDTO.MissionRegistDto request,
+                                                                   @RequestParam  Long storeId) {
         Mission mission = missionCommandService.MissionRegist(request, storeId);
         MissionResponseDTO.MissionResultDto resultDto = MissionConverter.toMissionResultDto(mission);
-        return ResponseDto.onSuccess(resultDto, Code.OK);
+        return ApiResponse.onSuccess(resultDto);
     }
 }

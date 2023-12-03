@@ -3,7 +3,7 @@ package umc.spring.service.MissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import umc.spring.base.Code;
+import umc.spring.base.Code.status.ErrorStatus;
 import umc.spring.base.exception.handler.StoreHandler;
 import umc.spring.converter.MissionConverter;
 import umc.spring.domain.Mission;
@@ -26,7 +26,7 @@ public  class MissionCommandServiceImpl implements MissionCommandService{
     public Mission MissionRegist(MissionRequestDTO.MissionRegistDto request,Long storeId) {
 
         Store store = storeRepository.findById(storeId)
-                .orElseThrow(() ->new StoreHandler(Code.STORE_NOt_FOUND));
+                .orElseThrow(() ->new StoreHandler(ErrorStatus.STORE_NOt_FOUND));
 
         Mission newMission= MissionConverter.toMission(request,store);
         return missionRepository.save(newMission);
