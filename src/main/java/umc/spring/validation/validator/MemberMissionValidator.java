@@ -1,9 +1,11 @@
-package umc.spring.validation.annotation;
+package umc.spring.validation.validator;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import umc.spring.base.Code.status.ErrorStatus;
 import umc.spring.domain.mapping.MemberMission;
 import umc.spring.repository.MemberMissionRepository;
+import umc.spring.validation.annotation.ValidMemberMission;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -11,7 +13,7 @@ import javax.validation.ConstraintValidatorContext;
 
 @Component
 @RequiredArgsConstructor
-public class MemberMissionValidator implements ConstraintValidator<ValidMemberMission,MemberMission>{
+public class MemberMissionValidator implements ConstraintValidator<ValidMemberMission, MemberMission>{
 
     final MemberMissionRepository memberMissionRepository;
     @Override
@@ -21,13 +23,17 @@ public class MemberMissionValidator implements ConstraintValidator<ValidMemberMi
 
     @Override
     public boolean isValid(MemberMission memberMission, ConstraintValidatorContext context) {
-        if (memberMission == null) {
-            return true; // 값이 없으면 유효성 검증을 패스하도록 설정
-        }
-        Long memberId = memberMission.getMember().getId(); // 예시일 뿐, 실제 코드에 맞게 수정 필요
+
+        Long memberId = memberMission.getMember().getId();
         Long missionId = memberMission.getMission().getId();
 
+
         boolean isMemberInMission = memberMissionRepository.existsByMemberIdAndMissionId(memberId, missionId);
+
+        if (isMemberInMission) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.MEMBERMISSION_ALREADY_EXSISTS.toString()).addConstraintViolation();
+        }
 
 
         return isMemberInMission;

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import umc.spring.validation.annotation.ValidMemberMission;
+
 import java.time.LocalDate;
 
 
@@ -19,4 +21,17 @@ public class MissionResponseDTO {
         LocalDate deadline;
         String missionSpec;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionJoinResultDto{
+        Long missionId;
+        Long memberId;
+        @ValidMemberMission
+        Long memberMissionId;
+    }
+
+
 }
