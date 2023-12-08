@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class MemberConverter {
     public static MemberResponseDTO.JoinResultDTO toJoinResultDTO(Member member){
+
         return MemberResponseDTO.JoinResultDTO.builder()
                 .memberId(member.getId())
                 .createdAt(LocalDateTime.now())

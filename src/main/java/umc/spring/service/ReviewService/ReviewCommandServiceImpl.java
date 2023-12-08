@@ -3,7 +3,7 @@ package umc.spring.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import umc.spring.base.Code;
+import umc.spring.base.Code.status.ErrorStatus;
 import umc.spring.base.exception.handler.StoreHandler;
 import umc.spring.converter.ReviewConverter;
 import umc.spring.domain.Member;
@@ -27,12 +27,12 @@ public class ReviewCommandServiceImpl implements ReviewCommandService{
     public Review ReviewRegist(ReviewRequestDTO.ReviewRegistDto request, Long memberId, Long storeId) {
 
         Store store = storeRepository.findById(storeId)
-                .orElseThrow(() ->new StoreHandler(Code.STORE_NOt_FOUND));
+                .orElseThrow(() ->new StoreHandler(ErrorStatus.STORE_NOt_FOUND));
 
         Member member = memberRepository.findById(storeId)
-                .orElseThrow(() ->new StoreHandler(Code.MEMBER_NOT_FOUND));
+                .orElseThrow(() ->new StoreHandler(ErrorStatus.MEMBER_NOT_FOUND));
 
-        Review newReivew= ReviewConverter.toReview(request,member,store);
-        return reviewRepository.save(newReivew);
+        Review newReview= ReviewConverter.toReview(request,member,store);
+        return reviewRepository.save(newReview);
     }
 }
