@@ -1,17 +1,17 @@
 package umc.spring.validation.annotation;
-
-import umc.spring.validation.validator.PageCheckValidator;
+import umc.spring.validation.validator.StoreExistValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = PageCheckValidator.class)
+@Constraint(validatedBy = StoreExistValidator.class)
 @Target( { ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CheckPage {
-    String message() default "페이지가 범위를 벗어났습니다.";
+public @interface ExistStore {
+
+    String message() default "해당하는 가게가 존재하지 않습니다.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

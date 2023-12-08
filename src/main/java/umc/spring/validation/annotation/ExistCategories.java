@@ -1,5 +1,7 @@
 package umc.spring.validation.annotation;
 
+import umc.spring.validation.validator.CategoriesExistValidator;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;

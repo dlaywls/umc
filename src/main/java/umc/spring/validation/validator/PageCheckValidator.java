@@ -1,16 +1,15 @@
-package umc.spring.validation.annotation;
+package umc.spring.validation.validator;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import umc.spring.base.Code;
+import umc.spring.validation.annotation.CheckPage;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 @Component
 @RequiredArgsConstructor
-public class CheckPageValidator implements ConstraintValidator<CheckPage, Integer> {
-
+public class PageCheckValidator implements ConstraintValidator<CheckPage, Integer>{
 
     @Override
     public void initialize(CheckPage constraintAnnotation) {
@@ -19,14 +18,14 @@ public class CheckPageValidator implements ConstraintValidator<CheckPage, Intege
 
     @Override
     public boolean isValid(Integer page, ConstraintValidatorContext context) {
+
         if (page < 0) {
             context.disableDefaultConstraintViolation();
-            context
-                    .buildConstraintViolationWithTemplate(Code.PAGE_NOT_FOUND.toString())
+            context.buildConstraintViolationWithTemplate(ErrorStatus.PAGE_NOT_FOUND.toString())
                     .addConstraintViolation();
             return false;
         }
-
         return true;
+
     }
 }

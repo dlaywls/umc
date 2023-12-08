@@ -1,10 +1,9 @@
 package umc.spring.base.exception.handler;
 
-
 import umc.spring.base.exception.GeneralException;
 
-public class TempHandler extends GeneralException {
-    public TempHandler(BaseErrorCode errorCode){
+public class MissionHandler extends GeneralException {
+    public MissionHandler(ErrorStatus errorCode){
         super(errorCode);
     }
 }

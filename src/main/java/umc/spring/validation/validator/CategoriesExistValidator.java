@@ -1,9 +1,10 @@
-package umc.spring.validation.annotation;
+package umc.spring.validation.validator;
+
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import umc.spring.base.Code;
 import umc.spring.repository.FoodCategoryRepository;
+import umc.spring.validation.annotation.ExistCategories;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -12,6 +13,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class CategoriesExistValidator implements ConstraintValidator<ExistCategories, List<Long>> {
+
 
     private final FoodCategoryRepository foodCategoryRepository;
 
@@ -27,7 +29,7 @@ public class CategoriesExistValidator implements ConstraintValidator<ExistCatego
 
         if (!isValid) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(Code.FOOD_CATEGORY_NOT_FOUND.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.FOOD_CATEGORY_NOT_FOUND.toString()).addConstraintViolation();
         }
 
         return isValid;
